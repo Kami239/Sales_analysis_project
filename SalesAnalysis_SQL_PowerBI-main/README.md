@@ -9,27 +9,20 @@ Developed end-to-end **sales analytics solution** by:
 #### **Technical Implementation**  
 
 **SQL Data Processing:**  
-```sql
--- Data cleaning and transformation
-SELECT 
-    ISNULL(s.SalesAmount, 0) AS CleanSales,
-    CASE 
-        WHEN s.Region = 'EU' THEN 'Europe' 
-        WHEN s.Region = 'NA' THEN 'North America'
-        ELSE 'Other' 
-    END AS RegionGroup,
-    CONCAT(d.ProductCategory, ' - ', d.ProductName) AS ProductFullName,
-    s.OrderDate
-FROM Fact_Sales s
-LEFT JOIN Dim_Products d ON s.ProductID = d.ProductID
-WHERE s.OrderDate BETWEEN '2022-01-01' AND GETDATE()
-ORDER BY s.SalesAmount DESC;
+- Cleaned and structured DW data by applying filters, joins, and calculated columns
+- Compared structured (DW) vs. unstructured (LT) data for analysis
 
--- Budget vs Actual analysis
-SELECT 
-    f.SalesAmount,
-    b.BudgetAmount,
-    (f.SalesAmount - b.BudgetAmount) AS Variance
-FROM Fact_Sales f
-JOIN Fact_Budget b ON f.ProductID = b.ProductID 
-                   AND YEAR(f.OrderDate) = YEAR(b.BudgetDate);
+**Power BI Dashboard Development**
+- Built a data model by connecting fact/dimension tables
+- Created DAX measures for KPIs and calculations
+- Designed interactive visuals (bar/pie charts, maps, drill-downs)
+
+**Business Insights & Reporting**
+- Translated business requests into data solutions
+- Enabled data-driven decisions through dynamic reporting
+
+### **Technical Skills Applied**
+- SQL: Data cleaning, joins, CASE statements, ISNULL
+- Power BI: DAX, data modeling, custom visuals, drill-through filters
+- Analytics: Sales trend analysis, budget vs. actual comparisons
+
